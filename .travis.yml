@@ -1,0 +1,11 @@
+script:
+  - echo "Hello World"
+deploy:
+  - skip_cleanup: true
+    provider: script
+    script:
+      - echo "deploy on $TRAVIS_BRANCH"
+    on:
+      tags: true
+      all_branches: true
+      condition: ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} =~ ^release.*
